@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,900;1,400;1,500;1,600&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #191414;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.login-screen {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-box {
+  background-color: #191414;
+  color: white;
+  padding: 1em;
+  display: flex;
+  text-align: center;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spotify-friends-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spotify-logo {
+  max-width: 9rem;
+}
+
+.spotify-button {
+  background-color: #1db954;
+  color: white;
+  padding: 12px;
+  width: 50%;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.9rem;
+  margin: auto;
+  margin-top: 1em;
+}
+.spotify-button:hover {
+  text-decoration: underline;
+}
+
+label,
+input {
+  display: block;
+}
+
+input {
+  border: none;
+}
