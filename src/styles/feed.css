@@ -3,6 +3,7 @@
   padding: 2px;
   font-size: 0.8rem;
   text-align: center;
+  font-weight: 600;
 }
 .feed-cards-wrapper {
   display: flex;
@@ -12,20 +13,24 @@
 .feed-controls {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 14px;
   padding-left: 12px;
   padding-right: 12px;
   font-size: 0.8em;
 }
 
-.MuiSwitch-root {
-  margin-left: 5px;
+.feed-links {
+  display: flex;
+  gap: 28px;
 }
 
-.filter-by-following {
+.feed-link-icon {
+  color: gray;
 }
 
-.pause-sharing {
+.feed-link-icon:active {
+  color: lime;
 }
 
 .feed-card {
@@ -59,7 +64,7 @@
 }
 
 .feed-card-follow-button:active {
-  color: lime;
+  color: #1db954;
 }
 
 .feed-card-username {

@@ -24,7 +24,7 @@ const Login = () => {
           <img className="spotify-logo" src={logo}></img>
         </div>
         <button className="spotify-button" onClick={redirect}>
-          New: Login with Spotify
+          Login with Spotify
         </button>
       </div>
     </div>

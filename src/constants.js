@@ -1,5 +1,5 @@
 const REDIRECT_URI = "https://friends-for-spotify.web.app/register";
-//const REDIRECT_URI = "http://192.168.1.36:3000/register";
+//const REDIRECT_URI = "http://localhost:3000/register";
 
 const CODE_URI = createCodeUri(REDIRECT_URI);
 

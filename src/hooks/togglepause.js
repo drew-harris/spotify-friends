@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { firestore, auth } from "../firebase/firebase";
+import { firestore, auth, analytics } from "../firebase/firebase";
 
 const useTogglePause = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -19,6 +19,7 @@ const useTogglePause = () => {
   }, []);
 
   const setPaused = async (status) => {
+    analytics.logEvent("toggle_pause");
     const userRef = firestore.collection("users").doc(auth.currentUser.uid);
     userRef.update({
       paused: status,

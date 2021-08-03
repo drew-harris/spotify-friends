@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
-import { firestore } from "../firebase/firebase";
+import { firestore, auth } from "../firebase/firebase";
 
-const useFollowList = (username) => {
+const useFollowList = () => {
   var localNames = JSON.parse(localStorage.getItem("follows"));
   const [followList, setFollowList] = useState(localNames);
 
   useEffect(() => {
     var unsubscribe = firestore
       .collection("follows")
-      .doc(username)
+      .doc(auth.currentUser.uid)
       .onSnapshot((doc) => {
         var newData = doc.data();
-        setFollowList(newData.following);
-        localStorage.setItem("follows", JSON.stringify(newData.following));
+        if (newData) {
+          setFollowList(newData.following);
+          localStorage.setItem("follows", JSON.stringify(newData.following));
+        }
       });
 
     return function cleanup() {

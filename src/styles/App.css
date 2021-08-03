@@ -11,6 +11,7 @@ body {
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  overscroll-behavior-y: none;
 }
 
 .login-screen {
@@ -26,7 +27,7 @@ body {
   padding: 1em;
   display: flex;
   text-align: center;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 12px;
@@ -47,6 +48,7 @@ body {
 .spotify-button {
   background-color: #1db954;
   color: white;
+  font-weight: 500;
   padding: 12px;
   width: 50%;
   border-radius: 8px;
@@ -66,4 +68,10 @@ input {
 
 input {
   border: none;
+}
+
+.date-holder {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 22px;
 }

@@ -4,9 +4,6 @@ import { analytics } from "../../firebase/firebase";
 import logo from "../../images/Spotify_Logo_RGB_White.png";
 
 const HypeScreen = () => {
-  const redirect = () => {
-    console.log("button clicked");
-  };
   useEffect(() => {
     analytics.logEvent("open_hype_screen");
   }, []);
@@ -18,6 +15,7 @@ const HypeScreen = () => {
           Friends for
           <img className="spotify-logo" src={logo}></img>
         </div>
+        <div className="date-holder">6.22.21</div>
       </div>
     </div>
   );

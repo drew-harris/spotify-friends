@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { APP_ENABLED } from "../../constants";
+import { Settings } from "./Settings";
 import { Feed } from "../Feed";
 import { FindPeople } from "../FindPeople";
 import { HypeScreen } from "./HypeScreen";
@@ -23,18 +24,23 @@ const Home = () => {
       }
     });
     if (window.matchMedia("(display-mode: standalone)").matches) {
-      analytics.setUserProperties({ using_pwa: true });
+      console.log("User property set");
+      analytics.setUserProperties({ using_pwa: "Using PWA" });
     } else {
-      analytics.setUserProperties({ using_pwa: false });
+      console.log("User property set");
+      analytics.setUserProperties({ using_pwa: "Not using PWA" });
       setShowInstallPopup(true);
     }
     analytics.logEvent("open_app");
   }, []);
-  const logOut = () => {
-    auth.signOut();
-  };
+
   if (!APP_ENABLED) {
-    return <HypeScreen />;
+    return (
+      <React.Fragment>
+        {showInstallPopup ? <InstallPopup /> : null}
+        <HypeScreen />
+      </React.Fragment>
+    );
   }
 
   if (!user) {
@@ -48,6 +54,7 @@ const Home = () => {
           <Switch>
             <Route exact path="/" component={Feed} />
             <Route path="/feed" component={Feed} />
+            <Route path="/settings" component={Settings} />
             <Route path="/find" component={FindPeople} />
           </Switch>
         </Router>

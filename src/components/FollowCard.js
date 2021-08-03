@@ -1,28 +1,16 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { PreviewButton } from "./PreviewButton";
 import {
+  faPause,
   faPauseCircle,
   faPlus,
   faMinus,
+  faUserPlus,
+  faUserMinus,
 } from "@fortawesome/free-solid-svg-icons";
-import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { firestore, auth, FieldValue, analytics } from "../firebase/firebase";
 import { useFollowList } from "../hooks/followlist";
 
-const SpotifyLinkButton = (props) => {
-  return (
-    <div
-      onClick={() => {
-        analytics.logEvent("open_in_spotify");
-        window.location.replace(props.url);
-      }}
-      className=" preview-button-icon feed-card-action-button"
-    >
-      <FontAwesomeIcon className="fa-preview-icon" icon={faSpotify} />
-    </div>
-  );
-};
 const FollowingButton = (props) => {
   const [followList] = useFollowList(auth.currentUser.uid);
   const followUser = async () => {
@@ -50,7 +38,7 @@ const FollowingButton = (props) => {
   if (followList.includes(props.username)) {
     followingIcon = (
       <FontAwesomeIcon
-        className="feed-card-follow-button"
+        className="follow-card-follow-button"
         onClick={unfollowUser}
         icon={faMinus}
         size="lg"
@@ -59,7 +47,7 @@ const FollowingButton = (props) => {
   } else {
     followingIcon = (
       <FontAwesomeIcon
-        className="feed-card-follow-button"
+        className="follow-card-follow-button"
         onClick={followUser}
         icon={faPlus}
         size="lg"
@@ -70,7 +58,7 @@ const FollowingButton = (props) => {
   return followingIcon;
 };
 
-const PlayingCard = (props) => {
+const FollowCard = (props) => {
   const data = props.data;
   const openProfile = () => {
     window.location.replace(data.profile.external_urls.spotify);
@@ -86,16 +74,10 @@ const PlayingCard = (props) => {
   let profilePic = null;
   if (data.profile.images.length > 0) {
     profilePic = (
-      <img className="feed-card-profilepic" src={data.profile.images[0].url} />
-    );
-  }
-
-  let albumShow;
-  if (data.playing.name == data.playing.albumName) {
-    albumShow = null;
-  } else {
-    albumShow = (
-      <div className="feed-card-album-name">{data.playing.albumName}</div>
+      <img
+        className="follow-card-profilepic"
+        src={data.profile.images[0].url}
+      />
     );
   }
 
@@ -104,34 +86,11 @@ const PlayingCard = (props) => {
       <div className="feed-card-left">
         <div className="feed-card-profile">
           <div className={"feed-card-username"} onClick={openProfile}>
-            {data.profile.display_name}
             {profilePic}
-            {data.paused ? (
-              <FontAwesomeIcon icon={faPauseCircle} size="lg" />
-            ) : null}
+            {data.profile.display_name}
           </div>
           <div className="follow-button-container">
             <FollowingButton username={data.profile.id} />
-          </div>
-        </div>
-        <div className="feed-card-song-display">
-          <div className="feed-card-album">
-            <img
-              src={data.playing.image}
-              className="feed-card-album-art"
-              alt="album art"
-            />
-          </div>
-          <div className="feed-card-trackinfo">
-            <div className="feed-card-song-name">{data.playing.name}</div>
-            {albumShow}
-            <div className="feed-card-artist-name">
-              {data.playing.artistName}
-            </div>
-            <div className="feed-card-action-buttons">
-              <SpotifyLinkButton url={data.playing.openUrl} />
-              <PreviewButton url={data.playing.previewUrl} />
-            </div>
           </div>
         </div>
       </div>
@@ -139,4 +98,4 @@ const PlayingCard = (props) => {
   );
 };
 
-export { PlayingCard };
+export { FollowCard };

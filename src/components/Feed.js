@@ -2,18 +2,28 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { auth, analytics } from "../firebase/firebase";
 import { useFollowList } from "../hooks/followlist";
-import { useTogglePause } from "../hooks/togglepause";
 import { firestore } from "../firebase/firebase";
 import { PlayingCard } from "./PlayingCard";
 import Switch from "@material-ui/core/Switch";
 import "../styles/feed.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 
 const Feed = () => {
   let cookieOn = localStorage.getItem("filterOn") === "true";
   const [dataList, setDataList] = useState(null);
   const [followList] = useFollowList(auth.currentUser.uid);
   const [filterByFollow, setFilterByFollow] = useState(cookieOn);
-  const [sharePaused, setSharePaused] = useTogglePause();
+  const history = useHistory();
+
+  const goToSettings = () => {
+    history.push("/settings");
+  };
+
+  const goToPeople = () => {
+    history.push("/find");
+  };
 
   useEffect(() => {
     const unsubscribe = firestore
@@ -44,16 +54,21 @@ const Feed = () => {
   return (
     <div className="feed-window">
       <div className="feed-controls">
-        <div className="pause-sharing">
-          Pause Sharing
-          <Switch
-            checked={sharePaused}
-            onChange={() => {
-              setSharePaused(!sharePaused);
-              analytics.logEvent("toggle_share_pause");
-            }}
-            size="small"
-          />
+        <div className="feed-links">
+          <div className="feed-link-icon" onClick={goToSettings}>
+            <FontAwesomeIcon
+              size="lg"
+              className="feed-settings-icon"
+              icon={faCog}
+            />
+          </div>
+          <div className="feed-link-icon" onClick={goToPeople}>
+            <FontAwesomeIcon
+              size="lg"
+              className="feed-settings-icon"
+              icon={faUserPlus}
+            />
+          </div>
         </div>
         <div className="filter-by-following">
           Filter Following

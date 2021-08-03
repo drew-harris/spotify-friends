@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { analytics, auth, functions } from "../../firebase/firebase";
 import { useHistory, Redirect } from "react-router-dom";
 import { REDIRECT_URI, BASE_AUTH_KEY } from "../../constants";
@@ -35,7 +35,7 @@ const Register = (props) => {
       analytics.logEvent("sign_up");
       auth.signInWithCustomToken(customAuthToken);
     } else {
-      alert(error);
+      alert(error.message);
     }
   };
 
@@ -82,7 +82,7 @@ const Register = (props) => {
     } catch (e) {
       /* handle error */
       console.error(e);
-      alert(e);
+      alert(e.message);
       return [null, null, e];
     }
   };
