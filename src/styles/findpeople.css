@@ -1,0 +1,19 @@
+.follow-cards-container {
+}
+
+.follow-card-profilepic {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.findpeople-navbar {
+  margin: 22px;
+}
+.follow-card-follow-button {
+  color: white;
+}
+.follow-card-follow-button:active {
+  color: lime;
+}

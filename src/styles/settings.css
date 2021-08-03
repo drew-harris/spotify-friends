@@ -1,0 +1,43 @@
+.settings-window {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-header {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 19px;
+  margin-top: 62px;
+}
+
+.settings-navbar {
+  height: 30px;
+  padding: 22px;
+  position: fixed;
+}
+
+.follow-page-button {
+  background-color: #1db954;
+  color: white;
+  padding: 6px;
+  border-radius: 8px;
+  border: none;
+  margin: auto;
+  margin-top: 1em;
+}
+
+.settings-unit {
+  border-radius: 5px;
+  padding-left: 19px;
+  padding-right: 13px;
+}
+
+.settings-toggle-pause-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-sign-out-container {
+  margin-top: 30px;
+}
