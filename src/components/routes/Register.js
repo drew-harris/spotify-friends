@@ -46,7 +46,6 @@ const Register = (props) => {
       accessToken,
       refreshToken,
     };
-    console.log(signUpData);
     const signUp = functions.httpsCallable("signUp");
     const customAuthToken = await signUp(signUpData);
     return customAuthToken.data.token;

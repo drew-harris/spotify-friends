@@ -6,13 +6,11 @@ import { CODE_URI } from "../../constants";
 
 const Login = () => {
   useEffect(() => {
-    console.log(auth);
     localStorage.setItem("follows", JSON.stringify(["zzzzz"]));
   }, []);
 
   const redirect = () => {
     analytics.logEvent("sign_in_with_spotify");
-    console.log("button clicked");
     window.location.replace(CODE_URI);
   };
 

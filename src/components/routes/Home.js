@@ -24,10 +24,8 @@ const Home = () => {
       }
     });
     if (window.matchMedia("(display-mode: standalone)").matches) {
-      console.log("User property set");
       analytics.setUserProperties({ using_pwa: "Using PWA" });
     } else {
-      console.log("User property set");
       analytics.setUserProperties({ using_pwa: "Not using PWA" });
       setShowInstallPopup(true);
     }
